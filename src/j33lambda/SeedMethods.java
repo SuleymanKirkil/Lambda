@@ -21,5 +21,9 @@ public class SeedMethods {
         return number1 > number2 ? number2 : number1;
     }
 
+    public static char getSonKaracter(String str){
+        return str.charAt(str.length()-1);
+    }
+
 }
 
