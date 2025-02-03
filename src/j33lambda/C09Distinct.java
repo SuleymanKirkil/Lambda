@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class C09Distinct {
+    public static void main(String[] args)
+
     {
         //distinct() => Bu method tekrarlı elemanları sadece bir kere akısa sokar.
         // Bu akışın farklı elemanlarından (Object.equals (Object) 'e göre) oluşan bir akış döndürür.
@@ -15,6 +17,13 @@ public class C09Distinct {
         List<String> yemahhh = new ArrayList<String>(Arrays.asList("küşleme", "küşleme", "küşleme", "soğanlı", "soğanlı", "soğanlı", "trileçe", "bicibici", "büryan", "melemen", "cacix", "kokereç", "yağlama", "güveç", "arabAşı", "tantuni"));
         System.out.println("***Task01****");
         //Task01-> list elemanlarını alfabetik Buyuk harf ile tekrarsız print eden code create ediniz...
+        yemahhh
+                .stream()
+                        .distinct()
+                                //.map(t-> t.toUpperCase())
+                                .map(String::toUpperCase)
+                                        .sorted()
+                                                .forEach(SeedMethods::yazdir);
 
         System.out.println();
         System.out.println("\n***Task02****");
