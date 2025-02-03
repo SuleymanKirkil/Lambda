@@ -2,6 +2,7 @@ package j33lambda;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public class C12Skip {
@@ -17,8 +18,24 @@ public class C12Skip {
 
         // Task : list elemanlarini son harfine göre siralayıp ilk iki eleman hariç kalan elemanlari print eden code create ediniz.
         System.out.println("\n****Version 01*****");
+        yemahhh
+                .stream()
+                        .sorted(Comparator.comparing(t-> t.charAt(t.length()-1)))
+                                .skip(2)
+                                        .forEach(SeedMethods::yazdir);
         System.out.println("\n****Version 02****");
+        System.out.println(yemahhh
+                .stream()
+                .sorted(Comparator.comparing(t -> t.charAt(t.length() - 1)))
+                .skip(2)
+                .toList());
+
         System.out.println("\n*****Version 03******");
+        System.out.println(Arrays.toString(yemahhh
+                .stream()
+                .sorted(Comparator.comparing(t -> t.charAt(t.length() - 1)))
+                .skip(2)
+                .toArray()));
 
 
     }
