@@ -2,6 +2,7 @@ package j33lambda;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public class C13LambdaObject {
@@ -27,21 +28,44 @@ public class C13LambdaObject {
         System.out.println("****Task 01*****");
 
         // Task01-> Tum notOrt'larının 74'den buyuk oldg control eden code create ediniz...
+        boolean tumUniversitelerinNotOrtalamasi74denBuykMu = unv
+                .stream()
+                        .allMatch(t-> t.getNotOrt()>74);
 
+        System.out.println("tumUniversitelerinNotOrtalamasi74denBuykMu = " + tumUniversitelerinNotOrtalamasi74denBuykMu);
         System.out.println("\n****Task 02*****");
         //task02->ogrc sayilarinin 110 den az olmadigini  kontrol eden code create ediniz.
+
 
         System.out.println("\n****Task 03*****");
         //task03->universite'lerde herhangi birinde "matematik" bolumu olup olmadigini  kontrol eden code create ediniz.
 
         System.out.println("\n****Task 04*****");
         //task04->universite'leri ogr sayilarina gore b->k siralayiniz.
+        List<C13University> ogrenciSayisiSiraliUnvList =
+                unv
+                .stream()
+                        .sorted(Comparator.comparing(C13University::getOgrcSayisi).reversed())
+                                .toList();
+        System.out.println("ogrenciSayisiSiraliUnvList = " + ogrenciSayisiSiraliUnvList);
 
         System.out.println("\n****Task 05*****");
         //task05-> universite'leri notOrt gore  b->k siralayip ilk 3 'unu print eden code create ediniz...
+        unv
+                .stream()
+                .sorted(Comparator.comparing(C13University::getNotOrt).reversed())
+                .limit(3)
+                .forEach(SeedMethods::yazdir);
+
 
         System.out.println("\n****Task 06*****");
         //task06-> ogrc sayisi en az olan 2. universite'yi  print eden code create ediniz...
+        System.out.println(unv
+                .stream()
+                .sorted(Comparator.comparing(C13University::getOgrcSayisi))
+                .skip(1)
+                .findFirst()
+                .get());
 
         System.out.println("\n****Task 07*****");
         //task07-> notOrt 63 'den buyuk olan universite'lerin ogrc sayilarini toplamini print eden code create ediniz...
