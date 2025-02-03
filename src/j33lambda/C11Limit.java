@@ -1,8 +1,6 @@
 package j33lambda;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class C11Limit {
     public static void main(String[] args) {
@@ -19,15 +17,45 @@ public class C11Limit {
         System.out.println("***Task01****");
         // Task-> list elemanlarının karakter sayısı en buyuk olanı print code create ediniz...
         System.out.println("****Version 01****");
-        System.out.println("****Version 02");
-        System.out.println("****Version 03****");
-        System.out.println("****Version 04****");
-        System.out.println("****Version 05****");
+        yemahhh
+                .stream()
+                .map(String::length)
+                .sorted(Comparator.reverseOrder())
+                .limit(1)
+                .forEach(SeedMethods::yazdir);
 
+        System.out.println("\n****Version 02");
 
+        System.out.println(yemahhh
+                .stream()
+                .map(String::length)
+                .reduce(Integer.MIN_VALUE, Math::max));
 
+        System.out.println("\n****Version 03****");
+        System.out.println(yemahhh
+                .stream()
+                .map(String::length)
+                .sorted(Comparator.reverseOrder())
+                .findFirst()
+                .get());
+        System.out.println("\n****Version 04****");
 
+        Object[] intArr =  (yemahhh
+                .stream()
+                .map(String::length)
+                .sorted(Comparator.reverseOrder())
+                .limit(1)
+                .toArray());
+        System.out.println(Arrays.toString(intArr));
 
+        System.out.println("\n****Version 05****");
+        List<Integer> karakterList = yemahhh
+                .stream()
+                .map(String::length)
+                .sorted(Comparator.reverseOrder())
+                .limit(1)
+                .toList();
+        System.out.println(karakterList);
 
 
     }
