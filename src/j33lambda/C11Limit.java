@@ -1,6 +1,7 @@
 package j33lambda;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class C11Limit {
     public static void main(String[] args) {
@@ -54,8 +55,18 @@ public class C11Limit {
                 .map(String::length)
                 .sorted(Comparator.reverseOrder())
                 .limit(1)
-                .toList();
+                .toList(); // Modifiye edilemeyen (add remove yok), immutable
+                //karakterList.add(3); // --> UnsupportedOperationException
         System.out.println(karakterList);
+
+        List<Integer> karakterList2 = yemahhh
+                .stream()
+                .map(String::length)
+                .sorted(Comparator.reverseOrder())
+                .limit(1)
+                .collect(Collectors.toList());  // Modifiye edilebilen mutable
+        karakterList2.add(3);
+        System.out.println(karakterList2);
 
 
     }
