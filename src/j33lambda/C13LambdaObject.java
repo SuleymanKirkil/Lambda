@@ -1,9 +1,6 @@
 package j33lambda;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class C13LambdaObject {
         /*
@@ -35,10 +32,16 @@ public class C13LambdaObject {
         System.out.println("tumUniversitelerinNotOrtalamasi74denBuykMu = " + tumUniversitelerinNotOrtalamasi74denBuykMu);
         System.out.println("\n****Task 02*****");
         //task02->ogrc sayilarinin 110 den az olmadigini  kontrol eden code create ediniz.
-
+        boolean universiteOgrSayi110KucukDegil =
+                unv
+                .stream()
+                        .noneMatch(t-> t.getOgrcSayisi()<110);
+        System.out.println("universiteOgrSayi110KucukDegil = " + universiteOgrSayi110KucukDegil);
 
         System.out.println("\n****Task 03*****");
         //task03->universite'lerde herhangi birinde "matematik" bolumu olup olmadigini  kontrol eden code create ediniz.
+        boolean listMatBolumuIcerir = unv.stream().anyMatch(t-> t.getBolum().equalsIgnoreCase("matematik"));
+        System.out.println("listMatBolumuIcerir = " + listMatBolumuIcerir);
 
         System.out.println("\n****Task 04*****");
         //task04->universite'leri ogr sayilarina gore b->k siralayiniz.
@@ -69,15 +72,61 @@ public class C13LambdaObject {
 
         System.out.println("\n****Task 07*****");
         //task07-> notOrt 63 'den buyuk olan universite'lerin ogrc sayilarini toplamini print eden code create ediniz...
+        System.out.println(unv
+                .stream()
+                .filter(t -> t.getNotOrt() > 63)
+                .map(C13University::getOgrcSayisi)
+                .reduce(0, Math::addExact));
+
+        System.out.println(unv
+                .stream()
+                .filter(t -> t.getNotOrt() > 63)
+                .mapToInt(C13University::getOgrcSayisi)
+                .sum());
 
         System.out.println("\n****Task 08*****");
         //task08-> Ogrenci sayisi 333'dan buyuk olan universite'lerin notOrt'larinin ortalamasini print eden code create ediniz...
+        OptionalDouble average =
+        unv
+                .stream()
+                .filter(t -> t.getOgrcSayisi() > 6333)
+                .mapToDouble(C13University::getNotOrt)
+                .average()
+                ;
+        System.out.println("average.orElse(0.0) = " + average.orElse(0.0));
+        if(average.isPresent()){
+            System.out.println(average.getAsDouble());
+        } else {
+            System.out.println("sorgunuz ile eşleşen veri bulunamadı");
+        }
 
         System.out.println("\n****Task 09*****");
         //task09-> "matematik" bolumlerinin sayisini  print eden code create ediniz...
+        System.out.println(unv
+                .stream()
+                .filter(t -> t.getBolum().equalsIgnoreCase("matematik"))
+                .count());
 
         System.out.println("\n****Task 10*****");
         //task10-> Ogrenci sayilari 571'dan fazla olan universite'lerin en buyuk notOrt'unu print eden code create ediniz...
+        System.out.println(unv
+                .stream()
+                .filter(t -> t.getOgrcSayisi() > 571)
+                //.sorted(Comparator.comparing(C13University::getNotOrt).reversed())
+                .mapToDouble(C13University::getNotOrt)
+                .max()
+                .getAsDouble());
+
+
+            unv
+                .stream()
+                .filter(t -> t.getOgrcSayisi() > 571)
+                .sorted(Comparator.comparing(C13University::getNotOrt).reversed())
+                .map(C13University::getNotOrt)
+                //.findFirst()
+                //.get()
+                .limit(1)
+                .forEach(SeedMethods::yazdir);
 
         System.out.println("\n****Task 11*****");
         //task11-> Ogrenci sayilari 1071'dan az olan universite'lerin en kucuk notOrt'unu print eden code create ediniz...
