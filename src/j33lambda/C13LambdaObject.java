@@ -130,7 +130,20 @@ public class C13LambdaObject {
 
         System.out.println("\n****Task 11*****");
         //task11-> Ogrenci sayilari 1071'dan az olan universite'lerin en kucuk notOrt'unu print eden code create ediniz...
+        unv
+                .stream()
+                .filter(t -> t.getOgrcSayisi() < 1071)
+                .sorted(Comparator.comparing(C13University::getNotOrt))
+                .map(C13University::getNotOrt)
+                .limit(1)
+                .forEach(System.out::println);
 
+
+        System.out.println(unv
+                .stream()
+                .filter(t -> t.getOgrcSayisi() < 1071)
+                .mapToDouble(C13University::getNotOrt)
+                .min().getAsDouble()); //55.0
 
     }
 }
